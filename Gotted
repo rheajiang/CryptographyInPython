@@ -1,0 +1,3 @@
+在本地仓库目录下增加的文件，通过GitHub Desktop可以看到，通过Commit to main 添加到本地仓库中，然后push，服务器中就添加进去对应的文件了
+在自己的账号下新建organization，就可以加入其它成员
+pip install 后面的python库都是从pypi网站中注册的库
