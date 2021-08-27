@@ -1,21 +1,21 @@
 import hashlib
-import time
-import sys
 
 max_nonce = 2 ** 32
-header = "test block with transaction"
-difficulty_bits = 30
+header = "test block with transactions version"
+difficulty_bits = 25
 target = 2 ** (256 - difficulty_bits)
 
 for nonce in range(max_nonce):
     print(str(nonce)+'\n')
     message = bytes(str(header) + str(nonce), 'utf-8')
     hash_result = hashlib.sha256(message).hexdigest()
-
-    if int(hash_result,16) < target:
+    hash_result_digit = int(hash_result,16)
+    if hash_result_digit < target:
         print("Success with nonce %d" % nonce)
-        hsb = bin(int(hex(int(hash_result,16)).upper(), 16))
-        print("Hash is\n%s" % str(hsb))
+        print("Success with hash value in digit: " + str(hash_result_digit))
+        hsb = bin(hash_result_digit)
+        #hsb = bin(int(hex(int(hash_result,16)).upper(), 16))
+        print("Hash value is\n%s" % str(hsb))
         print(bin(target))
         break
 
