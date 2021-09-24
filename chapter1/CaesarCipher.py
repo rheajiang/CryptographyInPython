@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# @Date    : 2018-10-12
-
-
 class CaesarCipher(object):
     """
     凯撒加密解密
@@ -66,17 +63,18 @@ class CaesarCipher(object):
 
 if __name__ == '__main__':
     plain = """
-    you know? I love you!
+    Hello cryptography!
     """
     key = 3
 
     cipher = CaesarCipher()
 
     # 加密
-    print(cipher.encrypt_text(plain, key))
-    # brx nqrz? L oryh brx!
+    c = cipher.encrypt_text(plain, key)
+    print(c)
+    # Khoor fubswrjudskb!
 
     # 解密
-    print(cipher.decrypt_text("brx nqrz? L oryh brx!", key))
-    # you know? I love you!
+    print(cipher.decrypt_text(c, key))
+    # Hello cryptography!
 

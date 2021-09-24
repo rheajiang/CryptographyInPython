@@ -4,13 +4,11 @@ from cryptography.hazmat.backends import default_backend
 import code4 as c4
 from collections import namedtuple
 import gmpy2
-from intervals import Interval
 from cryptography.hazmat.primitives import serialization
-
 # Dependencies: int_to_bytes(), bytes_to_int(), and simple_rsa_decrypt()
-
-
 # RSA Oracle Attack Component
+
+Interval = namedtuple('Interval', ['a','b'])
 def int_to_bytes(i, min_size = None):
     # i might be a gmpy2 big integer; convert back to a Python int
     i = int(i)
@@ -71,8 +69,7 @@ class RSAOracleAttacker:
             s_max = gmpy2.c_div((3 * self.B + ri * self.n), a)
             si = self._find_s(start_s=si, s_max=s_max)
             ri += 1
-
-            return si
+        return si
 
     def _step3_narrowing_set_of_solutions(self, si):
         new_intervals = set()
@@ -122,6 +119,7 @@ class RSAOracleAttacker:
 
 
 #def main():
+
 private_key = rsa.generate_private_key(
     public_exponent=65537,
     key_size=512,
@@ -132,6 +130,7 @@ message = b'test'
 ###
 # WARNING: PKCS #1 v1.5 is obsolete and has vulnerabilities
 # DO NOT USE EXCEPT WITH LEGACY PROTOCOLS
+
 ciphertext = public_key.encrypt(
     message,
     padding.PKCS1v15())
@@ -146,6 +145,7 @@ print("Recovered: {}".format(recovered))
 oracle = FakeOracle(private_key)
 rsaAttack = RSAOracleAttacker(public_key, oracle)
 print(rsaAttack.attack(ciphertext_as_int))
+
 
 #if __name__ == '__main__':
 #    main()

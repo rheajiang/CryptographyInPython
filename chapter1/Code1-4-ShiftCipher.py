@@ -1,9 +1,9 @@
 #import sys
 #sys.path.append(r'D:\Users\jyl\Documents\GitHub\CryptographyInPython\chapter2')
-import CCC
+import chapter1.CCC as ccc
 
 n = 2
-A = CCC.A(n)
+A = ccc.A(n)
 A.printable_substitution()
 print(A.encode("DFSAJLFDSALJFJSDF"))
 print(A.decode(A.encode("DFSAJLFDSALJFJSDF")))
