@@ -25,7 +25,10 @@ ciphertexts = []
 
 for m in plaintexts:
     padded_message = padder.update(m)
-    ciphertexts.append(aesEncryptor.update(padded_message))
+    print(padded_message)
+    ci = aesEncryptor.update(padded_message)
+    print(ci)
+    ciphertexts.append(ci)
 
 ciphertexts.append(aesEncryptor.update(padder.finalize()))
 
